@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="hidden" id="_csrf" name="_csrf" value="{{_csrf.token}}"/>
+
+<label for="h">H (Hue)</label>
+<input type="number" id="h"/>
+
+<label for="s">S (Saturation)</label>
+<input type="number" id="s"/>
+
+<label for="v">V (Value)</label>
+<input type="number" id="v"/>
+
+<button id="sendBtn">모핑효과보기</button>
+
+<pre id="resultBox"></pre>
+<div id="imgBox"></div>
+
+
+<script>
+    document.getElementById('sendBtn').addEventListener('click', async () => {
+        const resultBox = document.getElementById('resultBox');
+        const csrfToken = document.getElementById('_csrf').value;
+        const csrfHeader = 'X-CSRF-TOKEN';
+
+        // 입력값 가져오기
+        const h = parseInt(document.getElementById('h').value) || 0;
+        const s = parseInt(document.getElementById('s').value) || 0;
+        const v = parseInt(document.getElementById('v').value) || 0;
+
+        const requestBody = { h, s, v };
+
+        try {
+            const response = await fetch('/morphing/11', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    [csrfHeader]: csrfToken
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            const data = await response.json();
+            resultBox.textContent = JSON.stringify(data, null, 2);
+
+            if (data.data) {
+                const effect = data.data;
+                const keys = Object.keys(effect);
+
+                keys.forEach(key => {
+                    if (typeof effect[key] === 'string' && effect[key].startsWith('data:image')) {
+                        const img = document.createElement('img');
+                        img.src = effect[key];
+                        img.alt = key;
+                        imgBox.appendChild(img);
+                    }
+              });
+            }
+        } catch (err) {
+            resultBox.textContent = '에러 발생: ' + err.message;
+        }
+    });
+</script>
+</body>
+</html>

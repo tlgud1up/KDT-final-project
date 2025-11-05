@@ -1,0 +1,95 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+
+<canvas id="myChart" width="400" height="200"></canvas>
+
+<script>
+    fetchData();
+
+    function fetchData() {
+        const apiUrl = '/api/predict';
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    displayChart(data);  // 받은 데이터로 차트 그리기
+                } else {
+                    alert('오류가 발생했습니다.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function displayChart(data) {
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        const years = data.map(item => item.year);
+        const sales = data.map(item => item.sales);
+
+        const data1 = sales.slice(0, 12);
+        const data2 = sales.slice(11);
+        const data2WithPadding = Array(11).fill(null).concat(data2);
+
+        const chartData = {
+            labels: years,
+            datasets: [
+                {
+                    data: data1,
+                    borderColor: 'black',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.1,
+                },
+                {
+                    data: data2WithPadding,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 3,
+                    fill: false,
+                    tension: 0.1,
+                }
+            ]
+        };
+
+        const chartOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false  // 범례 숨기기
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        autoSkip: false,
+                    },
+                    title: {
+                        display: false,
+                        //text: 'Year'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '사용량(톤)'
+                    }
+                }
+            },
+            animation: {
+                duration: 2000,
+                easing: 'easeInOutQuad',
+                onProgress: function(animation) {
+                    console.log('Animation Progress:', animation.currentStep / animation.numSteps);
+                }
+            }
+        };
+
+        new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: chartOptions
+        });
+    }
+
+</script>

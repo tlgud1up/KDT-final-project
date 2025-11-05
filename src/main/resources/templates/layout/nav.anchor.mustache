@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Nav-anchor</title>
+
+	<style>
+.nav-anchor {
+     position: fixed;
+     left: 40px;
+     top: 50%;
+     transform: translateY(-50%);
+     display: flex;
+     flex-direction: column;
+     gap: 0;
+     z-index: 999;
+}
+
+.nav-anchor-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    background: #B4ADA7;
+}
+
+.nav-anchor-item.active .nav-anchor-text {
+    color: #43564A;
+    opacity: 1;
+}
+.nav-anchor-item.active .nav-dot {
+    background: #43564A;
+}
+
+
+.nav-anchor-text {
+    font-family: 'Geologica', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #B4ADA7;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    text-transform: capitalize;
+    letter-spacing: 0.02em;
+
+}
+
+.nav-anchor-item:hover .nav-anchor-text,
+.nav-anchor-item.active .nav-anchor-text {
+    opacity: 1;
+}
+</style>
+</head>
+
+
+<body>
+<div class="nav-anchor">
+	<div class="nav-anchor-item active" data-target="intro">
+			<div class="nav-dot"></div>
+		<span class="nav-anchor-text">Intro</span>
+	</div>
+
+	<div class="nav-anchor-item" data-target="carbon-neutrality">
+			<div class="nav-dot"></div>
+		<span class="nav-anchor-text">탄소 중립</span>
+	</div>
+
+	<div class="nav-anchor-item" data-target="construction">
+			<div class="nav-dot"></div>
+		<span class="nav-anchor-text">건설 탄소 중립</span>
+	</div>
+
+	<div class="nav-anchor-item" data-target="recycled-aggregate">
+			<div class="nav-dot"></div>
+		<span class="nav-anchor-text">순환 골재는</span>
+	</div>
+
+	<div class="nav-anchor-item" data-target="usage1">
+			<div class="nav-dot"></div>
+		<span class="nav-anchor-text">사용 용도</span>
+	</div>
+
+	<div class="nav-anchor-item" data-target="stats">
+			<div class="nav-dot"></div>
+		<span class="nav-anchor-text">통계</span>
+	</div>
+
+	<div class="nav-anchor-item" data-target="simulation1">
+			<div class="nav-dot"></div>
+		<span class="nav-anchor-text">시뮬레이션</span>
+	</div>
+
+	<div class="nav-anchor-item" data-target="limitation">
+			<div class="nav-dot"></div>
+		<span class="nav-anchor-text">한계</span>
+	</div>
+
+	<div class="nav-anchor-item" data-target="why">
+			<div class="nav-dot"></div>
+		<span class="nav-anchor-text">핵심 문제</span>
+	</div>
+
+	<div class="nav-anchor-item" data-target="procedure">
+			<div class="nav-dot"></div>
+		<span class="nav-anchor-text">과정</span>
+	</div>
+
+	<div class="nav-anchor-item" data-target="solution">
+			<div class="nav-dot"></div>
+		<span class="nav-anchor-text">솔루션</span>
+	</div>
+</div>
+
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+	   const navItems = document.querySelectorAll(".nav-anchor-item");
+	   const sections = document.querySelectorAll("section");
+
+	   // 클릭 시 스크롤
+	   navItems.forEach(item => {
+		  item.addEventListener("click", () => {
+			 const targetId = item.dataset.target;
+			 const targetSection = document.getElementById(targetId);
+			 targetSection.scrollIntoView({ behavior: "smooth" });
+		  });
+	   });
+
+	   // 스크롤 시 active 변경
+	   window.addEventListener("scroll", () => {
+		  let current = sections[0].id;
+		  const scrollY = window.pageYOffset;
+
+		  sections.forEach(section => {
+			 if (scrollY >= section.offsetTop - 150) {
+				current = section.id;
+			 }
+		  });
+
+		  navItems.forEach(item => {
+			 item.classList.toggle("active", item.dataset.target === current);
+		  });
+	   });
+	});
+</script>
+
+</body>
+</html>

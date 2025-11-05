@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>분석 페이지</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/newAnalyze.css">
+
+
+</head>
+<body>
+<input type="hidden" name="_csrf" value="{{_csrf.token}}">
+{{>layout/header}}
+
+<!-- 히어로 Section -->
+<section class="hero-section" data-theme="light">
+    <div class="hero-content">
+        <p class="hero-subtitle">
+            <span class="ping"></span>
+            AI 기반 품질 분석 시스템</p>
+        <h1 class="hero-title">
+            순환 골재 품질 분석<br>
+            <span>AI로 더 정확하게</span>
+        </h1>
+
+        <p class="hero-desc">
+            R-CNN, PCA, OpenCV를 활용하여 순환골재 내 불순물을 검출하고,<br>
+            품질 기준에 적합한지 여부를 판정합니다.
+        </p>
+    </div>
+
+    <div class="hero-tech">
+        <p class="tech-label">핵심 기술</p>
+        <div class="tech-list">
+            <div class="tech-item">
+                <div class="tech-icon">R-</div>
+                <p class="tech-name">R-CNN<br><span>객체 검출</span></p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">PC</div>
+                <p class="tech-name">PCA<br><span>차원 축소</span></p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">Op</div>
+                <p class="tech-name">OpenCV<br><span>이미지 처리</span></p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- 분석 프로세스 섹션 -->
+<section class="process-section">
+    <h2 class="process-title">정확한 분석 프로세스</h2>
+    <p class="process-subtitle">3단계 AI 분석으로 순환골재의 불순물을 정밀하게 선별합니다</p>
+
+    <div class="process-container">
+        <div class="process-card">
+            <span class="process-step">1</span>
+            <h3>이미지 전처리</h3>
+            <p>이미지 품질 향상 및 노이즈 제거</p>
+        </div>
+
+        <div class="process-card">
+            <span class="process-step">2</span>
+            <h3>객체 검출</h3>
+            <p>머신러닝 및 딥러닝 모델을 통한 불순물 검출</p>
+        </div>
+
+        <div class="process-card">
+            <span class="process-step">3</span>
+            <h3>불순물 분류</h3>
+            <p>검출된 객체의 종류 및 분류</p>
+        </div>
+    </div>
+</section>
+
+<!-- 이미지 업로드 및 분석 섹션 -->
+<section class="upload-section">
+    <div class="upload1-header">
+        <h2 class="upload1-title">이미지 분석 시작하기 </h2>
+        <p class="upload1-subtitle"> 골재 이미지를 업로드하면 즉시 AI 분석이 시작됩니다</p>
+    </div>
+
+    <!--요구사항 카드-->
+    <div class="requirements-card">
+        <div class="requirements-header">
+            <h3>이미지 업로드 요구사항</h3>
+            <p>정확한 분석을 위해 다음 요구사항을 확인해주세요</p>
+        </div>
+
+        <!-- 품질 기준 및 규정 -->
+        <div class="quality-standard">
+            <p class="quality-standard-title">품질 기준 및 규정</p>
+            <p class="quality-standard-desc">
+                순환 골재의 유기 이물질 함유량은 골재속에 포함된 비닐, 플라스틱, 목재 등의 함유량이
+                총 골재 용적의 1.0% 이하이어야 한다.<br>
+                기준: KS F2576(순환 골재의 이물질 함유량 시험방법)
+            </p>
+        </div>
+
+        <div class="requirements-grid">
+            <div class="req-column">
+                <div class="req-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E07C3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" x2="12" y1="8" y2="12"></line>
+                        <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                    </svg>
+                    <strong>화질 기준</strong>
+                </div>
+                <ul>
+                    <li>필수 해상도: 1920x1080px</li>
+                    <li>초점이 명확한 이미지</li>
+                </ul>
+            </div>
+
+            <div class="req-column">
+                <div class="req-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E07C3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" x2="12" y1="8" y2="12"></line>
+                        <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                    </svg>
+                    <strong>촬영 가이드</strong>
+                </div>
+                <ul>
+                    <li>가까운 거리에서 촬영</li>
+                    <li>정면에서 수직으로</li>
+                    <li>그림자 최소화 추천</li>
+                </ul>
+            </div>
+
+            <div class="req-column">
+                <div class="req-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E07C3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" x2="12" y1="8" y2="12"></line>
+                        <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                    </svg>
+                    <strong>업로드 조건</strong>
+                </div>
+                <ul>
+                    <li>형식: JPG,JPEG, PNG, WEBP</li>
+                    <li>최대 크기: 10MB</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 이미지 업로드 박스 -->
+    <div class="upload-analysis-grid">
+        <div class="upload-card">
+            <div class="card-header">
+                <h3>이미지 업로드</h3>
+            </div>
+            <p class="card-subtitle">분석할 골재 이미지를 업로드해주세요</p>
+
+            <div class="upload-area" id="upload-area"> <div class="upload-default-content" id="upload-default-content">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#43564A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="upload-icon-large">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" x2="12" y1="3" y2="15"></line>
+                </svg>
+                <p class="upload-text">클릭하거나 이미지 업로드</p>
+                <p class="upload-hint">또는 파일을 드래그 앤 드롭</p>
+                <small class="upload-format">JPG, JPEG, PNG, WEBP (최대 10MB)</small>
+            </div>
+
+                <div class="preview-container" id="preview-container" style="display: none;">
+                    <img id="preview-img" src="" alt="미리보기">
+                </div>
+            </div>
+            <button class="start-analysis-btn" id="start-analysis-btn" style="display: none;">분석 시작</button>
+            <input type="file" id="file-input" accept="image/jpeg,image/jpg,image/png,image/webp" style="display:none">
+        </div>
+
+        <!-- 분석 진행 상황 -->
+        <div class="analysis-card">
+            <div class="card-header">
+                <h3>분석 진행 상황</h3>
+            </div>
+            <p class="card-subtitle">이미지를 업로드하고 분석을 시작해보세요</p>
+
+            <div class="analysis-steps">
+                <div class="step-item">
+                    <strong>이미지 규격 확인 중</strong>
+                    <p class="step-desc">업로드된 이미지의 품질 및 규격 확인 중입니다</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-bar1"></div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <strong>객체 및 불순물 분석 중</strong>
+                    <p class="step-desc">AI 모델이 이미지 내 객체를 분석하고 있습니다</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-bar2"></div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <strong>분석 결과 정리 및 리포트 생성 중</strong>
+                    <p class="step-desc">검출 비율과 분석 리포트를 정리하는 중입니다</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-bar3"></div>
+                    </div>
+
+                    <div class="analysis-complete-message" id="complete-message" style="display: none;">
+                        <p>분석이 완료되었습니다. 분석 결과를 확인해주세요.</p>
+                        <button class="view-result-btn" onclick="alert('분석 결과 페이지로 이동합니다.')">분석 결과</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    // --- 요소 참조 (새로운 HTML 구조에 맞게 수정) ---
+    // --- 요소 참조 (새로운 HTML 구조에 맞게 수정) ---
+    const fileInput = document.getElementById('file-input');
+    const uploadArea = document.getElementById('upload-area');
+    const uploadDefaultContent = document.getElementById('upload-default-content');
+    const previewContainer = document.getElementById('preview-container');
+    const previewImg = document.getElementById('preview-img');
+// ... (나머지 변수 유지) ...
+    const analyzeStartBtn = document.getElementById('start-analysis-btn');
+    const completeMessage = document.getElementById('complete-message'); // '분석 완료' 메시지 컨테이너
+    const analyzeResultBtn = document.querySelector('.view-result-btn'); // '분석 결과' 버튼
+
+    const validExtensions = ['jpeg', 'jpg', 'png', 'webp'];
+    const maxSize = 10 * 1024 * 1024;
+    const csrfToken = document.querySelector('input[name="_csrf"]').value;
+    let lastSelectedFile = null;
+    let origImageId = null;
+
+    // --- 프로그레스바 목록 (새로운 CSS/HTML 구조에 맞게 수정) ---
+    // 참고: 체크 마크 요소는 HTML에 추가해주셔야 합니다. (아래 '참고사항' 확인)
+    const progressBars = [
+        { bar: document.getElementById('progress-bar1'), check: document.getElementById('progress-check1') },
+        { bar: document.getElementById('progress-bar2'), check: document.getElementById('progress-check2') },
+        { bar: document.getElementById('progress-bar3'), check: document.getElementById('progress-check3') }
+    ];
+
+    // --- 파일 선택 (새로운 UI에 맞게 수정) ---
+    uploadArea.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', handleFileSelect);
+    // '다시 선택' 버튼이 새 UI에 없으므로 해당 리스너 제거
+
+    // 파일 선택 시
+    function handleFileSelect() {
+        if (fileInput.files.length === 0) return;
+        const file = fileInput.files[0];
+        lastSelectedFile = file;
+        const ext = file.name.split('.').pop().toLowerCase();
+
+        // 에러 메시지를 condLabel 대신 alert()으로 변경
+        if (!validExtensions.includes(ext)) {
+            alert('지원되지 않는 파일 형식입니다. 다른 파일을 선택해주세요.');
+            analyzeStartBtn.style.display = 'none';
+        } else if (file.size > maxSize) {
+            alert('파일 용량이 10MB를 초과했습니다. 다른 파일을 선택해주세요.');
+            analyzeStartBtn.style.display = 'none';
+        } else {
+            // 유효한 파일 선택 시
+
+
+            analyzeStartBtn.style.display = 'block';
+
+
+            uploadDefaultContent.style.display = 'none'; // 기본 텍스트 숨김
+            previewContainer.style.display = 'flex'; // 미리보기 표시 (CSS에서 flex로
+
+            const reader = new FileReader();
+            reader.onload = e => previewImg.src = e.target.result;
+            reader.readAsDataURL(file);
+        }
+
+        fileInput.value = ''; // 동일 파일 재선택 가능하도록 초기화
+    }
+
+    // --- 분석 시작 ---
+    analyzeStartBtn.addEventListener('click', async () => {
+        // fileInput.files[0]이 없을 경우 (파일 선택 후 '취소' 누른 경우 등) lastSelectedFile 사용
+        const file = lastSelectedFile;
+        if (!file) {
+            alert('파일을 먼저 선택해주세요.');
+            return;
+        }
+
+        try {
+            prepareUIForAnalysis();
+
+            // 1 이미지 규격 검사
+            await performStep1Validation(file);
+
+            // 2 딥러닝 분석
+            await performStep2Analysis(file);
+
+            // 3 결과 정리 (하드코딩)
+            await performStep3Finalize();
+
+            showAnalysisComplete();
+
+        } catch (err) {
+            console.error('분석 실패:', err);
+            alert('분석 실패: ' + (err.message || '알 수 없는 오류'));
+            resetAnalysisUI();
+        }
+    });
+
+    /**
+     * 1단계: 이미지 규격 검사
+     */
+    async function performStep1Validation(file) {
+        const { bar, check } = progressBars[0];
+        bar.style.width = '0%'; // div는 value 대신 style.width 사용
+
+        try {
+            // 실제 fetch (주석 해제 시 사용)
+            const formData = new FormData();
+            formData.append('image', file);
+            const res = await fetch('/api/images/validate', {
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN': csrfToken },
+                body: formData
+            });
+            const data = await res.json();
+
+            // 가짜 응답 시뮬레이션 (테스트용)
+            // await new Promise(res => setTimeout(res, 1500));
+            // const data = { status: '0' };
+
+            if (data.status !== '0') throw new Error(data.error || '이미지 규격 검사 실패');
+
+            await fillProgressBar(bar, 500); // 0.5초 동안
+
+            // 체크마크 애니메이션 (요소가 존재할 경우에만 실행)
+            if (check) {
+                check.classList.add('animate');
+                await sleep(300);
+                check.classList.add('fill');
+                await sleep(200);
+            }
+
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    /**
+     * 2단계: 딥러닝 분석
+     */
+    async function performStep2Analysis(file) {
+        const { bar, check } = progressBars[1];
+        bar.style.width = '0%';
+
+        try {
+            // 실제 fetch (주석 해제 시 사용)
+            const formData = new FormData();
+            formData.append('image', file);
+            const res = await fetch('/api/images/upload', {
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN': csrfToken },
+                body: formData
+            });
+            const data = await res.json();
+
+            // 가짜 응답 시뮬레이션 (테스트용)
+            // await new Promise(res => setTimeout(res, 2000));
+            // const data = { id: 'dummy-result-id' };
+
+            if (!data.id) throw new Error('딥러닝 분석 실패 (ID 없음)');
+            origImageId = data.id;
+
+            await fillProgressBar(bar, 600); // 0.6초 동안
+
+            if (check) {
+                check.classList.add('animate');
+                await sleep(300);
+                check.classList.add('fill');
+                await sleep(200);
+            }
+
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    /**
+     * 3단계: 결과 정리 (하드코딩)
+     */
+    async function performStep3Finalize() {
+        const { bar, check } = progressBars[2];
+        bar.style.width = '0%';
+
+        await fillProgressBar(bar, 600); // 0.6초 동안
+
+        if (check) {
+            check.classList.add('animate');
+            await sleep(300);
+            check.classList.add('fill');
+            await sleep(200);
+        }
+    }
+
+    /**
+     *  0%에서 100%까지 부드럽게 채우는 함수
+     * @param {HTMLElement} bar - 프로그레스바 <div.progress-fill> 요소
+     * @param {number} duration - 채우는데 걸리는 시간 (밀리초)
+     */
+    async function fillProgressBar(bar, duration) {
+        const steps = 30; // 부드러움 정도
+        const increment = 100 / steps;
+        const delay = duration / steps;
+
+        for (let i = 0; i < steps; i++) {
+            // <progress>의 .value 대신 <div>의 .style.width 사용
+            bar.style.width = Math.min(increment * (i + 1), 100) + '%';
+            await sleep(delay);
+        }
+        bar.style.width = '100%';
+    }
+
+    // --- 유틸리티 ---
+    function sleep(ms) { return new Promise(res => setTimeout(res, ms)); }
+
+    function prepareUIForAnalysis() {
+        analyzeStartBtn.style.display = 'none'; // '분석 시작' 버튼 숨기기
+        completeMessage.style.display = 'none'; // '분석 완료' 메시지 숨기기
+        // 프로그레스바 초기화 (resetAnalysisUI에서 수행)
+        progressBars.forEach(({ bar, check }) => {
+        if (bar) bar.style.width = '0%';
+        if (check) check.classList.remove('animate', 'fill');
+    });
+    }
+
+    function resetAnalysisUI() {
+        // 모든 프로그레스바 너비를 0으로
+        progressBars.forEach(({ bar, check }) => {
+            if (bar) bar.style.width = '0%';
+            if (check) check.classList.remove('animate', 'fill');
+        });
+       if (uploadDefaultContent) uploadDefaultContent.style.display = 'flex'; // 기본 텍스트 복구
+        if (previewContainer) previewContainer.style.display = 'none'; // 미리보기 숨김
+
+        // 분석 실패 시, 다시 시도할 수 있도록 '분석 시작' 버튼 표시 (파일이 있는 경우에만)
+        if (lastSelectedFile) {
+            analyzeStartBtn.style.display = 'block';
+        } else {
+            analyzeStartBtn.style.display = 'none';
+        }
+    }
+
+    function showAnalysisComplete() {
+        completeMessage.style.display = 'block'; // '분석 완료' 메시지 표시
+    }
+
+    // '분석 결과' 버튼의 기본 onclick을 덮어쓰고 새 로직 할당
+    analyzeResultBtn.onclick = null; // HTML에 하드코딩된 onclick 제거
+    analyzeResultBtn.addEventListener('click', () => {
+        if (!origImageId) return alert('결과 ID가 없습니다.');
+        window.location.href = '/result/' + origImageId;
+    });
+
+
+
+</script>
+
+{{>layout/footer}}
+</body>
+</html>

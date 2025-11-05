@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+</head>
+<body class="dark-theme">
+<header class="header">
+    <div class="header-container">
+
+        <div class="logo">
+            <a href="/">Re:source</a>
+        </div>
+
+		<nav class="nav">
+			<ul class="nav-list">
+				<li class="nav-item">
+					<a href="/about" class="nav-link">ABOUT</a>
+				</li>
+				<li class="nav-item">
+					<a href="/analyze" class="nav-link">ANALYZE</a>
+				</li>
+				<li class="nav-item">
+					<a href="/mypage" class="nav-link">MY</a>
+				</li>
+                    <li class="nav-item">
+                        {{#authenticated}}
+                            <a href="/logout" class="nav-link nav-link-login">LOG OUT</a>
+                        {{/authenticated}}
+                        {{^authenticated}}
+                            <a href="/login" class="nav-link nav-link-login">LOG IN</a>
+                        {{/authenticated}}
+                    </li>
+			</ul>
+        </nav>
+    </div>
+</header>
+
+<script>
+    function updateTheme() {
+        const header = document.querySelector('.header');
+        const sections = document.querySelectorAll('section[data-theme]');
+        const headerHeight = header ? header.offsetHeight : 0;
+
+        if (sections.length > 0) {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+
+                if (rect.top <= headerHeight && rect.bottom >= headerHeight) {
+                    const theme = section.getAttribute('data-theme');
+
+                    if (theme === 'dark') {
+                        document.body.className = 'dark-theme';
+                    } else {
+                        document.body.className = 'light-theme';
+                    }
+                }
+            });
+        }
+
+        if (header) {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', updateTheme);
+
+    window.addEventListener('scroll', updateTheme);
+</script>
+</body>
+</html>
+

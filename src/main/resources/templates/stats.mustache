@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <style>
+
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+
+        .stats-section {
+        padding: 100px 100px 100px;
+        max-width: 1920px;
+        min-height: 100vh;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 60px;
+        }
+
+        .stats-section-left,
+        .stats-section-center,
+        .stats-section-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* 중앙 지도 정렬 */
+        .korea-map-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #usage-korea-map {
+            width: 500px;
+            height: 710px;
+        }
+
+
+        /* 차트 카드 공통 스타일 유지 */
+        .bar-chart-container,
+        .line-chart-container,
+        .donut-chart-container {
+            box-shadow: 0 8px 6px rgba(0, 0, 0, 0.40);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bar-chart-size,
+        .line-chart-size,
+        .donut-chart-size {
+        height: 300px;
+        padding: 20px;
+        }
+
+        .section-title{
+        font-size: 48px;
+        }
+
+        .total-number-container{
+        padding: 20px;
+        text-align: center;
+        }
+
+
+        .up-total-number{
+        margin-bottom:20px;
+        }
+
+        .up-total-number h1,
+        .down-total-number h1 {
+        font-size: 100px;
+        }
+
+
+
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+<section id="stats" class="stats-section">
+    <!-- 왼쪽: 바 + 라인 -->
+    <div class="stats-section-left">
+        <div class="bar-chart-container">
+            <div class="bar-chart-title">
+                <h2>건설폐기물 재활용률</h2>
+                <p>2018-2021년 재활용률(%):(재활용량/발생량)x100</p>
+            </div>
+            <div class="bar-chart-size">
+                <canvas id="usage-bar-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="line-chart-container">
+            <div class="line-chart-title">
+                <h2>건설폐기물 발생량 대비 순환골재 사용량</h2>
+                <p>2020-2023년 추이 (단위:만톤)</p>
+            </div>
+            <div class="donut-chart-size">
+                <canvas id="usage-line-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- 가운데: 제목 + 지도 -->
+    <div class="stats-section-center">
+        <div class="korea-map-container" style="text-align:center;">
+            <h1 class="section-title">데이터로 보는 순환골재</h1>
+            <p>지도위에 마우스를 올리면 지역별 생산량을 확인하실 수 있습니다.</p>
+            <svg id="usage-korea-map"></svg>
+        </div>
+    </div>
+
+    <!-- 오른쪽: 도넛 -->
+    <div class="stats-section-right">
+        <div class="total-number-container">
+            <div class="up-total-number">
+                <p>무슨무슨 총량</p>
+                <h1>4,323</h1>
+            </div>
+            <div class="down-total-number">
+                <p>무슨무슨 총량</p>
+                <h1>4,323</h1>
+            </div>
+        </div>
+        <div class="donut-chart-container">
+            <div class="donut-chart-title">
+                <h2>용도별 순환골재 사용량</h2>
+                <p>2020-2021년 평균 (단위:만톤)</p>
+            </div>
+            <div class="donut-chart-size">
+                <canvas id="usage-donut-chart"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div id="tooltip" style="
+    position: absolute;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    pointer-events: none;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.2s;
+"></div>
+
+
+
+<script>
+    new Chart(document.getElementById("usage-line-chart").getContext('2d'), {
+       type: 'line',
+       data: {
+           labels: ["2020","2021","2022","2023"],
+           datasets: [
+           {
+               label: "건설 폐기물 발생량",
+               data: [8644,8381,7681,6437],
+                borderColor: '#13a162'
+            },
+            {
+                label: "순환 골재 사용량",
+                data: [5024,5217,5333,5111],
+                borderColor: '#d04522'
+            }
+            ]
+        },
+        options: {
+            responsive: true,       // 차트가 부모 컨테이너 크기에 맞춰 자동으로 크기 조정됨
+            maintainAspectRatio: false, // true면 aspect-ratio 고정, false면 부모 크기에 맞춤
+            plugins: {
+                legend: { display: true }, // 범례 표시 여부
+            }
+        }
+    });
+
+
+     new Chart(document.getElementById("usage-donut-chart").getContext('2d'), {
+       type: 'doughnut',
+       data: {
+           labels: ["성토용","도로기층용","복토용","콘크리트용","기타"],
+           datasets: [{
+               data: [38,27,21,10,5],
+               backgroundColor: ['#035220','#4b5b70','#be563d','#a46645','#4e4c4c']
+           }]
+       },
+       options: {
+           responsive: true,       // 차트가 부모 컨테이너 크기에 맞춰 자동으로 크기 조정됨
+           maintainAspectRatio: false, // true면 aspect-ratio 고정, false면 부모 크기에 맞춤
+           plugins: {
+               legend: { display: true }, // 범례 표시 여부
+           }
+       }
+   });
+
+   new Chart(document.getElementById("usage-bar-chart").getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ["2018","2019","2020","2021"],
+            datasets: [
+            {
+                label: "건설폐기물 재활용률",
+                data: [50,60,65,60],
+                backgroundColor: '#f1512e'
+            }
+            ]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,       // 차트가 부모 컨테이너 크기에 맞춰 자동으로 크기 조정됨
+            maintainAspectRatio: false, // true면 aspect-ratio 고정, false면 부모 크기에 맞춤
+            plugins: {
+                legend: { display: true }, // 범례 표시 여부
+            }
+        }
+    });
+
+      const regionColors = {
+        "서울특별시": "#f94144",
+        "부산광역시": "#f3722c",
+        "대구광역시": "#f8961e",
+        "인천광역시": "#f9844a",
+        "광주광역시": "#f9c74f",
+        "대전광역시": "#90be6d",
+        "울산광역시": "#43aa8b",
+        "세종특별자치시": "#4d908e",
+        "경기도": "#577590",
+        "강원도": "#277da1",
+        "충청북도": "#720026",
+        "충청남도": "#d00000",
+        "전라북도": "#ffb703",
+        "전라남도": "#fb8500",
+        "경상북도": "#023047",
+        "경상남도": "#219ebc",
+        "제주특별자치도": "#8ecae6"
+    };
+
+    const regionData = {
+    "서울특별시": "10%",
+    "부산광역시": "12%",
+    "대구광역시": "8%",
+    "인천광역시": "9%",
+    "광주광역시": "7%",
+    "대전광역시": "6%",
+    "울산광역시": "5%",
+    "세종특별자치시": "3%",
+    "경기도": "20%",
+    "강원도": "4%",
+    "충청북도": "3%",
+    "충청남도": "6%",
+    "전라북도": "4%",
+    "전라남도": "5%",
+    "경상북도": "7%",
+    "경상남도": "8%",
+    "제주특별자치도": "3%"
+};
+
+
+
+    const svg = d3.select("#usage-korea-map");
+    const tooltip = d3.select("#tooltip");
+
+   fetch('/data/skorea-provinces-2018-topo.json')
+    .then(res => res.json())
+    .then(data =>{
+    const geoData = topojson.feature(data, data.objects.skorea_provinces_2018_geo);
+
+    const projection = d3.geoMercator()
+        .center([128,36])
+        .scale(5500)
+        .translate([250,380]);
+
+    const path = d3.geoPath().projection(projection);
+
+    svg.selectAll("path")
+        .data(geoData.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .attr("stroke","#333")
+        .attr("fill", "white")
+        .attr("stroke-width",0.5)
+        .on("mouseover", function(event,d){
+            // hover 색 변경
+            d3.select(this)
+                .transition()
+                .duration(200)
+                .attr("fill", d=> regionColors[d.properties.name] || "#ffd700")
+                .attr("transform", "translate(0,-5)"); // 살짝 위로
+            // tooltip 표시
+            if(d.properties && d.properties.name){
+                tooltip.style("opacity", 1)
+                       .html(`${d.properties.name}: ${regionData[d.properties.name] || "-"}`);
+            }
+        })
+        .on("mousemove", function(event){
+            tooltip.style("left", (event.pageX + 10) + "px")
+                   .style("top", (event.pageY + 10) + "px");
+        })
+        .on("mouseout", function(){
+            // 색 원상복귀
+            d3.select(this)
+                .transition()
+                .duration(200)
+                .attr("fill", "white")
+                .attr("transform", "translate(0,0)"); // 원래 위치
+            // tooltip 숨김
+            tooltip.style("opacity", 0);
+        });
+    });
+
+
+
+</script>
+
+</body>
+</html>

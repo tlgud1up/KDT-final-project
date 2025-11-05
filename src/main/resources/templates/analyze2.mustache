@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common2.css">
+    <style>
+
+        body {
+        font-size: 16px;
+        background-color: #F9FAFB;
+        min-height: 100vh;
+        margin: 0;
+        }
+
+        .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1920px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
+        }
+
+        .title-container {
+        text-align: center;
+        }
+
+        .title{
+        font-size: 3rem;
+        font-weight: bold;
+        }
+
+        .notice{
+        line-height:1.3;
+        }
+
+
+        .notice img{
+        height: 1rem;
+        vertical-align: middle;
+        position: relative;
+        top: -0.1rem;
+        }
+
+        .popup{
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        right:2rem;
+        top:3.3rem;
+        }
+
+        .popup-content {
+        background: #fff;
+        border-radius: 10px;
+        padding: 0.7rem;
+        box-shadow: 0 0 8px rgba(0,0,0,0.2);
+        text-align: left;
+        }
+
+        #close {
+        float: right;
+        font-size: 1rem;
+        cursor: pointer;
+        }
+
+        .sample-container {
+        width: 80%;
+        border: 1px solid black;
+        background-color: white;
+        padding: 0.5rem 2rem;
+        margin: 1rem 0;
+        }
+
+        .sample-container-title{
+        font-size: 1.2rem;
+        }
+
+        .sample-img-container {
+        display: flex;
+        justify-content: space-around;
+        padding: 1rem;
+        }
+
+        .sample-img-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+
+
+        .sample-label{
+        display: inline-block;
+        border-radius: 5px;
+        border: 1px solid black;
+        padding: 0 0.4rem;
+        margin-top: 0.5rem;
+        font-size: 0.7rem;
+        }
+
+        .good{
+        background-color: black;
+        color: white;
+        }
+
+        .sample-img{
+        width: 270px;
+        height: 150px;
+        }
+
+        .upload-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width:80%;
+        height: 300px;
+        border: 1px dashed black;
+        padding:1rem;
+        transition: all 0.5s ease;
+        }
+
+        .upload-container.analyzing{
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        }
+
+        .before-upload-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        line-height:1.4;
+        }
+
+        .before-upload-container p{
+        font-size: 0.8rem;
+        }
+
+        .analyze-btn {
+        margin-top: 1rem;
+        padding: 10px 37px;
+        font-size: 16px;
+        font-weight: 300;
+        color: #FFFFFF;
+        background: #000000;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        }
+
+        .analyze-btn:hover {
+        background: #43564a;
+        }
+
+       .preview-container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 30%;
+        transition: all 0.5s ease;
+        }
+
+        /* 분석 중일 때 활성화 */
+        .upload-container.analyzing .preview-container {
+            display: flex;
+        }
+
+        #preview-img{
+        display:block;
+        width:270px;
+        height:150px;
+        object-fit: contain;
+        transition: all 0.5s ease;
+        }
+
+        .after-upload-container{
+        margin-top: 1rem;
+        }
+
+        .analyze-ready-container,
+        .analyze-done-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+
+        #start-analyze-btn,
+        #result-analyze-btn{
+        margin-top: 0.2rem;
+        }
+
+        .analyze-container{
+        display:none;
+        flex-direction: column;
+        gap:1.5rem;
+        width:50%;
+        opacity:0;
+        transition: all 0.5s ease;
+        }
+
+        .analyze-process{
+        display: flex;
+        justify-content: space-between;
+        }
+
+        .analyze-info{
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        }
+
+        .analyze-info h2 {
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        progress{
+        width:15rem;
+        height:0.7rem;
+        -webkit-appearance: none;
+        appearance: none;
+        }
+
+        progress::-webkit-progress-bar{
+        background-color:white;
+        border-radius:5px;
+        }
+
+        progress::-webkit-progress-value{
+        background-color:green;
+        border-radius:5px;
+        }
+
+        .progress-checkmark{
+        width:1.5rem;
+        height:1.5rem;
+        vertical-align: middle;
+        position: relative;
+        margin-left:1rem;
+        }
+
+        /* 체크마크 기본 상태 */
+        .progress-checkmark path {
+        stroke: green;
+        stroke-width: 40;
+        stroke-dasharray: 1415;   /* 선 전체 길이 */
+        stroke-dashoffset: 1415; /* 시작할 때는 다 숨김 */
+        fill: green;
+        fill-opacity: 0;
+        transition: fill-opacity 0.5s ease-in-out;
+        }
+
+        /* 애니메이션 실행 */
+        .progress-checkmark.animate path {
+        animation: drawCheck 1.5s forwards ease-in-out;
+        }
+
+        .progress-checkmark.fill path{
+        fill-opacity: 1;
+        }
+
+         @keyframes drawCheck {
+          from {
+            stroke-dashoffset: 1415; /* 처음엔 안 보임 */
+          }
+          to {
+            stroke-dashoffset: 0; /* 전부 다 그려짐 */
+          }
+        }
+
+
+
+
+
+
+    </style>
+</head>
+
+<body>
+<input type="hidden" name="_csrf" value="{{_csrf.token}}">
+{{>layout/header}}
+<div class="container">
+    <div class="title-container">
+        <p class="title">순환 골재 품질 분석</p>
+        <p class="notice">R-CNN,PCA,OpenCV를 활용하여 순환골재 내 불순물을 검출하고,
+            품질 기준에 적합한지 여부를 판정합니다 <img src="/images/notice_icon.png" alt="알림" id="notice_icon" style="cursor:pointer;"></p>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span id="close">&times;</span>
+                <p>품질 기준 및 규정</p>
+                <p style="font-size:0.7rem">순환 골재의 유기 이물질 함유량은 골재속에 포함된 비닐,플라스틱,목재 등의 함유량이
+                    총 골재 용적의 1.0% 이하이어야 한다.<br>기준:KS F 2576(순환 골재의 이물질 함유량 시험방법)</p>
+            </div>
+        </div>
+    </div>
+    <div class="sample-container">
+        <p class="sample-container-title">샘플 이미지 예시</p>
+        <div class="sample-img-container">
+            <div class="sample-img-box">
+                <img class="sample-img" src="/images/good_sample.png" alt="좋은 예시1">
+                <div class="sample-label good">좋은 예시</div>
+            </div>
+            <div class="sample-img-box">
+                <img class="sample-img" src="/images/good_sample2.png" alt="좋은 예시2">
+                <div class="sample-label good">좋은 예시</div>
+            </div>
+            <div class="sample-img-box">
+                <img class="sample-img" src="/images/bad_sample.png" alt="나쁜 예시">
+                <div class="sample-label bad">나쁜 예시</div>
+            </div>
+        </div>
+    </div>
+    <div class="upload-container">
+        <div class="before-upload-container" id="before-upload-container">
+            <h2>이미지를 찾아서 업로드 하세요</h2>
+            <p>파일은 JPEG, JPG, PNG 또는 WebP 형식이어야 하며 최대 용량은 10MB입니다</p>
+            <input type="file" id="file-input" accept="image/jpeg,image/jpg,image/png,image/webp" style="display:none">
+            <button class="analyze-btn" id="select-file-btn">파일 선택</button>
+        </div>
+        <div class="preview-container" id="preview-container" style="display: none;">
+            <img id="preview-img" src="" alt="미리보기">
+            <button class="analyze-btn" id="reselect-file-btn">다시 선택</button>
+        </div>
+        <div class="analyze-container" style="display: none;">
+            <div class="analyze-process">
+                <div class="analyze-info">
+                    <h2>이미지 전처리</h2>
+                    <p>이미지 품질 향상 및 노이즈 제거</p>
+                </div>
+                <div class="progress-mark">
+                    <progress class="progress-bar"  id="progress-bar1" value="0" max="100"></progress>
+                    <svg class="progress-checkmark" id="progress-check1"    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                        <!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <path fill="none" d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8
+                            L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9
+                            C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6
+                            C92.9 394.1 92.9 373.8 105.4 361.3
+                            C117.9 348.8 138.2 348.8 150.7 361.3
+                            L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="analyze-process">
+                <div class="analyze-info">
+                    <h2>객체 검출</h2>
+                    <p>머신러닝 및 딥러닝 모델을 통한 불순물 검출</p>
+                </div>
+                <div class="progress-mark">
+                    <progress class="progress-bar"  id="progress-bar2" value="0" max="100"></progress>
+                    <svg class="progress-checkmark" id="progress-check2"    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                        <!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <path fill="none" d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8
+                            L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9
+                            C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6
+                            C92.9 394.1 92.9 373.8 105.4 361.3
+                            C117.9 348.8 138.2 348.8 150.7 361.3
+                            L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="analyze-process">
+                <div class="analyze-info">
+                    <h2>불순물 분류</h2>
+                    <p>검출된 객체의 종류 및 분류</p>
+                </div>
+                <div class="progress-mark">
+                    <progress class="progress-bar"  id="progress-bar3" value="0" max="100"></progress>
+                    <svg class="progress-checkmark" id="progress-check3"    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                        <!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                        <path fill="none" d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8
+                            L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9
+                            C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6
+                            C92.9 394.1 92.9 373.8 105.4 361.3
+                            C117.9 348.8 138.2 348.8 150.7 361.3
+                            L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="after-upload-container" id="after-upload-container">
+        <div class="analyze-ready-container" id="analyze-ready" style="display: none;">
+            <p class="cond-label" id="cond-label"></p>
+            <button class="analyze-btn" id="start-analyze-btn" style="display:none;">분석 시작</button>
+        </div>
+        <div class="analyze-done-container" id="analyze-done" style="display: none;">
+            <p class="done-label" id="done-label">분석이 완료되었습니다. 분석결과를 확인해주세요.</p>
+            <button class="analyze-btn" id="result-analyze-btn">분석 결과</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const popup = document.getElementById('popup');
+    const popup_btn = document.getElementById('notice_icon');
+    const close_btn = document.getElementById('close');
+
+    popup_btn.addEventListener('click', () => {
+    popup.style.display = 'block';
+    });
+    close_btn.addEventListener('click', () => {
+    popup.style.display = 'none';
+    });
+
+    const fileInput = document.getElementById('file-input');
+    const selectFileBtn = document.getElementById('select-file-btn');
+    const reselectFileBtn = document.getElementById('reselect-file-btn');
+    const beforeUpload = document.getElementById('before-upload-container');
+    const previewContainer = document.getElementById('preview-container');
+    const previewImg = document.getElementById('preview-img');
+    const analyzeReady = document.getElementById('analyze-ready');
+    const condLabel = document.getElementById('cond-label');
+    const analyzeStartBtn = document.getElementById('start-analyze-btn');
+    const analyzeDone = document.getElementById('analyze-done');
+    const analyzeResultBtn = document.getElementById('result-analyze-btn');
+    const validExtensions = ['jpeg', 'jpg', 'png','webp'];
+    const maxSize=10*1024*1024;
+
+    selectFileBtn.addEventListener('click', () => {
+    fileInput.click();
+    });
+
+    fileInput.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+
+    const fileExt=file.name.split('.').pop().toLowerCase();
+
+    if(!validExtensions.includes(fileExt)){
+        condLabel.innerText='지원되지 않는 파일 형식입니다. 다른 파일을 선택해주세요.';
+        condLabel.style.color = 'red';
+        }else if(file.size > maxSize){
+        condLabel.innerText='파일 용량이 10MB를 초과했습니다. 다른 파일을 선택해주세요.';
+        condLabel.style.color = 'red';
+        }else{
+        condLabel.innerText='이미지가 분석 요구사항을 만족합니다. 분석을 시작할 수 있습니다';
+        condLabel.style.color = 'green';
+        analyzeStartBtn.style.display = 'block';
+        }
+
+    beforeUpload.style.display = 'none';
+    previewContainer.style.display = 'flex';
+    analyzeReady.style.display = 'flex';
+
+    const reader = new FileReader();
+    reader.onload = function (e){
+    previewImg.src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+    }
+    });
+
+    reselectFileBtn.addEventListener('click', () => {
+    fileInput.value = '';
+    previewImg.src = '';
+    previewContainer.style.display = 'none';
+    beforeUpload.style.display = 'block';
+    condLabel.innerText='';
+    analyzeStartBtn.style.display = 'none';
+
+    fileInput.click();
+    });
+
+    const uploadContainer = document.querySelector('.upload-container');
+    const analyzeContainer = document.querySelector('.analyze-container');
+        const progressBars = [
+        {bar:document.getElementById('progress-bar1'),check:document.getElementById('progress-check1')},
+        {bar:document.getElementById('progress-bar2'),check:document.getElementById('progress-check2')},
+        {bar:document.getElementById('progress-bar3'),check:document.getElementById('progress-check3')},
+        ];
+        const csrfToken = document.querySelector('input[name="_csrf"]').value;
+
+
+         function runProgress(index) {
+        if (index >= progressBars.length){
+        analyzeDone.style.display = 'flex';
+        return; // 끝
+        }
+
+        const {bar, check} = progressBars[index];
+        bar.value = 0;
+        let progress = 0;
+        const duration = 2000; // 2초
+        const intervalTime = 20;
+        const step = 100 / (duration / intervalTime);
+
+        const interval = setInterval(() => {
+            progress += step;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+                check.classList.add('animate');
+                setTimeout(() => {
+                    check.classList.add('fill');
+                    runProgress(index + 1); // 다음 프로그레스바 실행
+                }, 1200); // 체크 애니메이션 끝나고 다음 진행
+            }
+            bar.value = progress;
+        }, intervalTime);
+    }
+
+    analyzeStartBtn.addEventListener('click', async() =>{
+        if (fileInput.files.length === 0) return;
+
+        analyzeReady.style.display = 'none';
+        reselectFileBtn.style.display = 'none';
+
+        uploadContainer.classList.add('analyzing');
+
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try{
+            const res = await fetch('/api/images/upload',{
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN':csrfToken
+                },
+                body: formData
+            });
+            data = await res.json();
+            console.log("업로드 완료, DB ID:",data.id);
+
+            analyzeContainer.style.display = 'flex';
+            analyzeContainer.style.opacity = '1';
+
+            runProgress(0);
+        } catch (err){
+            console.error(err);
+            alert('이미지 업로드 실패! 서버 확인 필요');
+            }
+    });
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

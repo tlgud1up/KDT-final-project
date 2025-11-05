@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/result.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="result">
+{{>layout/header}}
+<div class="container">
+    <div class="title_container">
+        <p id="title">순환 골재 품질 분석</p>
+        <p class="subtitle">AI 기반 불순물 검출 및 품질 </p>
+    </div>
+    <div class="distinction_container">
+        <div class="distinction_container_left">
+            <h2 id="distinction_label">분석 완료 - 품질 {{result.suitable}}</h2>
+            <p style="font-size:0.8rem; margin-bottom:1rem;">총 {{result.count}}개의 불순물이 검출되었습니다. 전체 비율 {{result.total}}%</p>
+            <div class="button_group">
+                <button id="view_detail_button">상세 분석 보기</button>
+                <button id="new_analyze_button">새로운 분석</button>
+            </div>
+        </div>
+        <button id="distinction_mark">{{result.suitable}}</button>
+    </div>
+    <div class="result_title">
+        <h2>불순물 검출 결과</h2>
+        <hr style="border: 0.2rem solid black; margin:1rem 0;">
+    </div>
+    <div class="result_container">
+        <div class="result_left">
+            <h4>선택한 이미지</h4>
+            <img src="{{result.origImage}}" alt="원본 이미지">
+            <div class="result_recap">
+                <div id="recap_number">
+                    <h3>총 불순물 개수</h3>
+                    <p class="recap_text" style="font-size:1.5rem;"><strong>{{result.count}}</strong></p>
+                    <p style="font-size:0.7rem;">검출된 전체 불순물</p>
+                </div>
+                <div id="recap_ratio">
+                    <h3>전체 불순물 비율</h3>
+                    <p class="recap_text" style="font-size:1.5rem;"><strong>{{result.total}}%</strong></p>
+                    <p style="font-size:0.7rem;">전체 골재 대비</p>
+                </div>
+            </div>
+            <div class="barchart_title">
+                <h4>검출 불순물 비율 비교</h4><p style="font-size:0.8rem;">AI 기반 불순물 검출 및 품질 기준 적합성 판단</p>
+            </div>
+            <div class="bar_container">
+                <canvas id="bar-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="result_right">
+            <h4>이미지 분석 결과</h4>
+            <img src="{{result.rcnnResult}}" alt="결과 이미지">
+            <button id="view_morphin_button">이미지 처리 과정 자세히 보기</button>
+            <div class="ratio_container">
+                <div class="ratio_box">
+                    <p><span class="color_mark" style="background:#3b4d08;"></span>폐비닐({{result.vinyl}}%)</p>
+                </div>
+                <div class="ratio_box">
+                    <p><span class="color_mark" style="background:#303e51;"></span>폐플라스틱({{result.plastic}}%)</p>
+                </div>
+                <div class="ratio_box">
+                    <p><span class="color_mark" style="background:#be563d;"></span>폐목재({{result.wood}}%)</p>
+                </div>
+            </div>
+            <div class="donut_title">
+                <h4>불순물 구성 비율</h4>
+                <p style="font-size:0.8rem;">검출된 불순물 중 각 종류가 차지하는 비율</p>
+            </div>
+            <div class="donut_container">
+                <canvas id="donut-chart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="recommendation">
+        <h3 style="margin-bottom:0.5rem;">품질 관리 개선 사항</h3>
+        <p id="recommendation_text"></p>
+    </div>
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-container">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <p class="analysis-date">분석일자 {{result.analysisDate}}</p>
+        <hr class="modal-line">
+        <div class="analysis-container">
+            <div class="analysis-content1">
+                <div class="content1-left">
+                    <h1 class="modal-title">순환골재 품질 분석 리포트</h1>
+                    <p style="font-size:0.7rem;">AI기반 불순물 검출 및 품질 기준 적합성 판단 결과</p>
+
+                    <div class="analysis-result-title">
+                        <h2>분석 결과<span>R-CNN을 메인으로,PCA 색상 분석은 보조 지표로 활용</span></h2>
+                        <p>기준 : KS F2576</p>
+                    </div>
+                    <hr class="modal-line">
+
+                </div>
+                <div class="content1-right">
+                    <p>입력이미지</p>
+                    <img src="{{result.origImage}}" alt="원본 이미지" class="modal-img">
+                </div>
+            </div>
+            <div class="analysis-content2">
+                <div class="analysis-box">
+                    <h2 class="analysis-title">R-CNN 객체 검출 분석<span>불순물 객체 검출 과정</span></h2>
+                    <hr class="modal-line">
+                    <img src="{{result.rcnnResult}}" alt="rcnn 이미지" class="modal-img">
+                    <p class="analysis-description">
+                        <strong>R-CNN (Region-based Convolutional Neural Network)</strong>은
+                        이미지에서 <span class="highlight">객체가 있을 법한 영역(Region Proposal)</span>을 추출하고,
+                        각 영역을 CNN으로 분류하여 객체를 인식하는 <strong>딥러닝 기반 객체 탐지 기법</strong>입니다.<br><br>
+                        학습된 모델을 이용해 이미지 내 <span class="highlight">불순물 영역</span>을 검출하고,
+                        전체 픽셀 대비 불순물 픽셀 비율을 계산하여 품질 적합 여부를 평가합니다.<br>
+                        📊 전체 불순물 비율 : <strong>{{result.total}}%</strong>
+                    </p>
+
+                </div>
+                <div class="analysis-box">
+                    <h2 class="analysis-title">OpenCV 분석<span>색상 기반 불순물 검출 과정</span></h2>
+                    <hr class="modal-line">
+                    <img src="{{result.opencvResult}}" alt="opencv 이미지" class="modal-img">
+                    <p class="analysis-description">
+                        <strong>OpenCV 색상 분석</strong>은 이미지의 색상 정보를 <span class="highlight">RGB</span> 형태로 변환한 뒤,
+                        특정 색상 범위에 포함되지 않는 영역을 <strong>불순물로 탐지</strong>하는 방법입니다.<br><br>
+                        불순물에 해당하는 최적 색상 범위 (<strong>x, x, x</strong>)를 추출하고
+                        <span class="highlight">불순물은 흰색</span>, 나머지는 검은색으로 처리하여 시각적으로 구분했습니다.
+                    </p>
+
+
+                </div>
+                <div class="analysis-box">
+                    <h2 class="analysis-title">PCA 분석<span>이상치 검출 과정</span></h2>
+                    <hr class="modal-line">
+                    <img src="{{result.pca}}" alt="pca 이미지" class="modal-img">
+                    <p class="analysis-description">
+                        <strong>PCA (Principal Component Analysis)</strong>는 데이터를 주요 특징(주성분)으로 압축하여
+                        다른 영역과 통계적으로 다른 <span class="highlight">이상치</span>를 찾아내는
+                        <strong>통계적 차원 축소 기법</strong>입니다.<br><br>
+                        차원 축소 후 <span class="highlight">산점도 그래프</span>로 시각화하여
+                        불순물의 분포 패턴과 품질 특성을 한눈에 확인할 수 있도록 구성했습니다.
+                    </p>
+
+
+                </div>
+            </div>
+            <div class="analysis-content3">
+                <h2>통계 분석</h2>
+                <div class="analysis-chart-container">
+                    <div class="chart-box">
+                        <h4>종류별 불순물 구성 비율</h4>
+                        <div class="chart-size">
+                            <canvas id="modal-donut-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-box">
+                        <h4>불순물 검출량 비교</h4>
+                        <div class="chart-size">
+                            <canvas id="modal-bar-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    const newAnalyzeButton = document.getElementById("new_analyze_button");
+    newAnalyzeButton.addEventListener("click", function () {
+        window.location.href=`/analyze`;
+    });
+
+    const distinctionLabel = document.getElementById("distinction_label");
+    distinctionLabel.style.color = ("{{result.suitable}}" === "적합") ? "#2f9055" : "#b52b09";
+
+
+    const distinctMark = document.getElementById('distinction_mark');
+    distinctMark.style.backgroundColor = ("{{result.suitable}}" === "적합") ? "#2f9055" : "#b52b09";
+
+    const total = Number("{{result.total}}");
+    const recapTexts = document.querySelectorAll('.recap_text');
+    recapTexts.forEach(p => {
+        if(total>1){
+            p.style.color = "#b52b09";
+            } else {
+            p.style.color = "#2f9055";
+        }
+    });
+
+
+    const recommendationText = document.getElementById('recommendation_text');
+
+    if(total > 1){
+        recommendationText.innerHTML = `검출된 불순물 비율(${total}%)이 KS기준(1.0% 이하)을 초과합니다.<br>
+    추가 선별 과정을 통해 불순물 제거 후 재검사를 권장합니다.`;
+    }else{
+        recommendationText.innerHTML = `검출된 불순물 비율(${total}%)이 KS기준(1.0% 이하)을 만족합니다.<br>
+    추가 선별 과정없이 진행하셔도 좋습니다.`;
+    }
+
+    const ratioVinyl={{result.vinyl}}/({{result.vinyl}}+{{result.plastic}}+{{result.wood}})*100;
+    const ratioPlastic={{result.plastic}}/({{result.vinyl}}+{{result.plastic}}+{{result.wood}})*100;
+    const ratioWood={{result.wood}}/({{result.vinyl}}+{{result.plastic}}+{{result.wood}})*100;
+
+     new Chart(document.getElementById("bar-chart").getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ["폐비닐","폐플라스틱","폐목재"],
+            datasets: [
+            {
+                label: "전체 이미지 불순물 평균 검출량",
+                data: [{{result.avgVinyl}},{{result.avgPlastic}},{{result.avgWood}}],
+                backgroundColor: '#f1512e'
+            },
+            {
+                label: "해당 이미지 불순물 검출량",
+                data: [{{result.vinyl}},{{result.plastic}},{{result.wood}}],
+                backgroundColor: 'black'
+            }
+            ]
+        },
+        options: {
+            responsive: true,       // 차트가 부모 컨테이너 크기에 맞춰 자동으로 크기 조정됨
+            maintainAspectRatio: false, // true면 aspect-ratio 고정, false면 부모 크기에 맞춤
+            plugins: {
+                legend: {
+           display: true,           // 범례 표시 여부
+           position: 'top',       // 위치 (top, bottom, left, right)
+           align: 'end',          // 세로 정렬 (start, center, end)
+           labels: {
+           boxWidth: 12,          // 범례 색상 박스 너비 (작게)
+           boxHeight: 12,         // 범례 색상 박스 높이 (작게)
+           usePointStyle: false,  // true면 원형, false면 사각형
+           pointStyle: 'rect',    // 박스 모양 지정 ('circle', 'rect', 'triangle' 등)
+           padding: 10,           // 항목 간 간격
+           color: '#000',         // 글자색
+                    }
+                }
+            }
+       }
+    });
+
+
+
+    new Chart(document.getElementById("donut-chart").getContext('2d'), {
+       type: 'doughnut',
+       data: {
+           labels: ["폐비닐","폐플라스틱","폐목재"],
+           datasets: [{
+               data: [ratioVinyl, ratioPlastic, ratioWood],
+               backgroundColor: ['#3b4d08','#303e51','#be563d']
+           }]
+       },
+       options: {
+           responsive: true,       // 차트가 부모 컨테이너 크기에 맞춰 자동으로 크기 조정됨
+           maintainAspectRatio: false, // true면 aspect-ratio 고정, false면 부모 크기에 맞춤
+           plugins: {
+               legend: {
+           display: true,           // 범례 표시 여부
+           position: 'right',       // 위치 (top, bottom, left, right)
+           align: 'start',          // 세로 정렬 (start, center, end)
+           labels: {
+           boxWidth: 12,          // 범례 색상 박스 너비 (작게)
+           boxHeight: 12,         // 범례 색상 박스 높이 (작게)
+           usePointStyle: false,  // true면 원형, false면 사각형
+           pointStyle: 'rect',    // 박스 모양 지정 ('circle', 'rect', 'triangle' 등)
+           padding: 10,           // 항목 간 간격
+           color: '#000',         // 글자색
+
+      }
+    }
+           }
+       }
+   });
+
+    new Chart(document.getElementById("modal-donut-chart").getContext('2d'), {
+       type: 'doughnut',
+       data: {
+           labels: ["폐비닐","폐플라스틱","폐목재"],
+           datasets: [{
+               data: [ratioVinyl, ratioPlastic, ratioWood],
+               backgroundColor: ['#3b4d08','#303e51','#be563d']
+           }]
+       },
+       options: {
+           responsive: true,       // 차트가 부모 컨테이너 크기에 맞춰 자동으로 크기 조정됨
+           maintainAspectRatio: false, // true면 aspect-ratio 고정, false면 부모 크기에 맞춤
+           plugins: {
+               legend: {
+           display: true,           // 범례 표시 여부
+           position: 'right',       // 위치 (top, bottom, left, right)
+           align: 'start',          // 세로 정렬 (start, center, end)
+           labels: {
+           boxWidth: 12,          // 범례 색상 박스 너비 (작게)
+           boxHeight: 12,         // 범례 색상 박스 높이 (작게)
+           usePointStyle: false,  // true면 원형, false면 사각형
+           pointStyle: 'rect',    // 박스 모양 지정 ('circle', 'rect', 'triangle' 등)
+           padding: 10,           // 항목 간 간격
+           color: '#000',         // 글자색
+
+      }
+    }
+           }
+       }
+   });
+
+    new Chart(document.getElementById("modal-bar-chart").getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ["폐비닐","폐플라스틱","폐목재"],
+            datasets: [
+            {
+                label: "전체 이미지 불순물 평균 검출량",
+                data: [{{result.avgVinyl}},{{result.avgPlastic}},{{result.avgWood}}],
+                backgroundColor: '#f1512e'
+            },
+            {
+                label: "해당 이미지 불순물 검출량",
+                data: [{{result.vinyl}},{{result.plastic}},{{result.wood}}],
+                backgroundColor: 'black'
+            }
+            ]
+        },
+        options: {
+            responsive: true,       // 차트가 부모 컨테이너 크기에 맞춰 자동으로 크기 조정됨
+            maintainAspectRatio: false, // true면 aspect-ratio 고정, false면 부모 크기에 맞춤
+            plugins: {
+                legend: {
+           display: true,           // 범례 표시 여부
+           position: 'top',       // 위치 (top, bottom, left, right)
+           align: 'end',          // 세로 정렬 (start, center, end)
+           labels: {
+           boxWidth: 12,          // 범례 색상 박스 너비 (작게)
+           boxHeight: 12,         // 범례 색상 박스 높이 (작게)
+           usePointStyle: false,  // true면 원형, false면 사각형
+           pointStyle: 'rect',    // 박스 모양 지정 ('circle', 'rect', 'triangle' 등)
+           padding: 10,           // 항목 간 간격
+           color: '#000',         // 글자색
+      }
+    }
+            }
+        }
+    });
+
+
+    const modal = document.getElementById('modal');
+    const viewDetailButton = document.getElementById('view_detail_button');
+
+    viewDetailButton.addEventListener('click', function() {
+        modal.style.display = 'block';
+    });
+
+    document.getElementById("modal-close").addEventListener("click",function (){
+        modal.style.display="none";
+    });
+
+    window.addEventListener("click",function (e){
+        if(e.target.id==='modal'){
+            modal.style.display="none";
+        }
+    });
+
+    const viewMorphingBtn = document.getElementById('view_morphin_button');
+    const resultPageUrl = window.location.pathname;
+
+    viewMorphingBtn.addEventListener('click', () => {
+    const origImageId = resultPageUrl.split('/').pop();
+    window.location.href = `/result/${origImageId}/morphing`;
+    });
+
+
+
+
+
+
+</script>
+</body>
+</html>

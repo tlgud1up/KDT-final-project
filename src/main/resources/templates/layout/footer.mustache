@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Footer</title>
+</head>
+<body>
+
+<!--스크롤 탑 버튼-->
+<div class="scroll-top-container">
+	<button class="scroll-top-btn" id="scrollTopBtn">
+		<img src="/images/scrolltop-Button.png">
+	</button>
+</div>
+
+
+<!--툴바-->
+<div class="toolbar">
+    <button class="tool-btn" onclick="location.href='/'" title="홈">
+        <img src="images/toolbar-home.png" alt="홈">
+    </button>
+
+
+	<button class="tool-btn" onclick="location.href='/about'" title="소개">
+		<img src="images/toolbar-about.png" alt="소개">
+	</button>
+
+
+    <button class="tool-btn" onclick="location.href='/analyze'" title="분석">
+        <img src="images/toolbar-analyze.png" alt="분석">
+    </button>
+
+	<button class="tool-btn" onclick="location.href='/mypage'" title="마이페이지">
+		<img src="images/toolbar-mypage.png" alt="마이페이지">
+	</button>
+</div>
+
+
+<!--스크롤 탑 버튼, 툴바 JS-->
+<script>
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    const toolbar = document.getElementById('toolbar');
+    const scrollTopContainer = document.getElementById('scrollTopContainer');
+    const footer = document.getElementById('footer');
+
+    // 스크롤 탑 버튼 클릭
+    scrollTopBtn.addEventListener('click', function() {
+       window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+       });
+    });
+
+    // 툴바와 스크롤 탑 버튼 위치 조정
+    function adjustPositions() {
+        const footerRect = footer.getBoundingClientRect();
+        const toolbarRect = toolbar.getBoundingClientRect();
+        const scrollTopRect = scrollTopContainer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        // 푸터가 화면에 나타나기 시작하는지 확인
+        const footerVisible = footerRect.top < windowHeight;
+
+        if (footerVisible) {
+            // 푸터 상단 - 20px 여백에서 툴바와 스크롤 탑 버튼을 멈춤
+            const stopPosition = footerRect.top - 20;
+
+            // 툴바 위치 조정
+            toolbar.classList.add('stopped');
+            toolbar.style.top = (stopPosition - toolbarRect.height) + 'px';
+            toolbar.style.bottom = 'auto';
+
+            // 스크롤 탑 버튼 위치 조정
+            scrollTopContainer.style.position = 'fixed';
+            scrollTopContainer.style.top = (stopPosition - scrollTopRect.height) + 'px';
+            scrollTopContainer.style.bottom = 'auto';
+        } else {
+            // 원래 위치로 복귀
+            toolbar.classList.remove('stopped');
+            toolbar.style.top = 'auto';
+            toolbar.style.bottom = '100px';
+
+            scrollTopContainer.style.top = 'auto';
+            scrollTopContainer.style.bottom = '50px';
+        }
+    }
+
+    // 스크롤 이벤트 리스너
+    window.addEventListener('scroll', adjustPositions);
+    window.addEventListener('load', adjustPositions);
+    window.addEventListener('resize', adjustPositions);
+</script>
+
+</body>
+</html>
+
+

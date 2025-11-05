@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login page</title>
+    <link rel="stylesheet" href="/css/common.css">
+
+<style>
+body {
+	background-color: #F9FAFB;
+	min-height: 100vh;
+	margin: 0;
+}
+
+/* 로그인 칸 */
+.login-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	padding: 102px 16px 0;
+	flex-direction: column;
+}
+
+.login-container {
+	width: 100%;
+	max-width: 520px;
+	background-color: white;
+	padding: 40px 35px;
+	position: relative;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	border: 1px solid #ccc;
+}
+
+.login-title {
+	font-size: 24px;
+	font-weight: 600;
+	color: #43564A;
+	text-align: center;
+	margin-bottom: 24px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+     margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.59em;
+    color: #364153;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="password"] {
+	width: 100%;
+	padding: 12px 15px;
+	border: 1px solid #bbb;
+	border-radius: 10px;
+	font-size: 13px;
+	font-weight: 400;
+	transition: border-color 0.3s;
+	box-sizing: border-box;
+	line-height: 1.33em;
+}
+
+.form-group input::placeholder {
+    color: #99A1AF;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #43564A;
+}
+
+input[type="text"].error,
+input[type="password"].error {
+    border-color: #F1512E;
+}
+
+
+/* 로그인 버튼 */
+.btn-login {
+	width: 100%;
+	padding: 13px;
+	background-color: #43564A;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1.59em;
+	text-align: center;
+	cursor: pointer;
+	margin-top: 10px;
+	transition: background-color 0.3s, opacity 0.3s;
+}
+
+.btn-login:hover {
+	background-color: #3a4a3a;
+}
+
+.signup-link {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	margin-top: 20px;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 1.59em;
+	color: #666;
+	 gap: 8px;
+}
+
+.signup-link a {
+	color: #43554A;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.signup-link a:hover {
+	text-decoration: underline;
+}
+
+/* 알림 메시지 */
+.alert-message {
+    background: transparent;
+    border: none;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    color: #F1512E;
+    font-size: 14px;
+    font-weight: 500;
+    display: none;
+    text-align: center;
+}
+
+.alert-message.show {
+    display: flex;
+    animation: slideRight 0.3s ease-out;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 에러 메시지 */
+.error-message {
+    color: #F1512E;
+    font-size: 13px;
+    margin-top: 6px;
+    margin-left: 4px;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+/*성공 메시지 (초록색)*/
+.alert-message.success {
+    color: #43564A;
+}
+
+.alert-message.success::before {
+    content: "✓";
+    font-size: 16px;
+}
+
+/* 에러 메시지 (빨간색) */
+.alert-message.error {
+    color: #F1512E;
+}
+
+@keyframes slideRight {
+from {
+	transform: translateX(-20px);
+	opacity: 0;
+}
+to {
+	transform: translateX(0);
+	opacity: 1;
+	}
+}
+
+
+</style>
+</head>
+<body class="light-theme">
+{{> layout/header}}
+
+
+<div class="login-wrapper" >
+	<h2 class="login-title">로그인</h2>
+    <div class="login-container">
+
+		<!-- 성공 메시지 (초록색) -->
+        {{#successMessage}}
+            <div class="alert-message success show">{{successMessage}}</div>
+        {{/successMessage}}
+
+		<!-- 에러 메시지 (빨간색) -->
+		{{#errorMessage}}
+			<div class="alert-message error show">{{errorMessage}}</div>
+		{{/errorMessage}}
+
+
+		<form method="post" action="/doLogin" id="loginForm">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+
+            <div class="form-group">
+                <label for="username">아이디</label>
+                <input type="text" id="username" name="username" placeholder="아이디를 입력해주세요">
+                <span class="error-message" id="usernameError">아이디를 입력해주세요</span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요">
+                <span class="error-message" id="passwordError">비밀번호를 입력해주세요</span>
+            </div>
+
+            <button type="submit" class="btn-login">로그인</button>
+        </form>
+
+        <div class="signup-link">
+            계정이 아직 없으신가요? <a href="/signup">회원가입</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    const usernameError = document.getElementById('usernameError');
+    const passwordError = document.getElementById('passwordError');
+
+    let isValid = true;
+
+    //아이디 입력 확인
+    if (username.value.trim() === '') {
+        username.classList.add('error');
+        usernameError.classList.add('show');
+        isValid = false;
+    } else {
+        username.classList.remove('error');
+        usernameError.classList.remove('show');
+    }
+
+    //비밀번호 입력 확인
+    if (password.value.trim() === '') {
+        password.classList.add('error');
+        passwordError.classList.add('show');
+        isValid = false;
+    } else {
+        password.classList.remove('error');
+        passwordError.classList.remove('show');
+    }
+
+    if (isValid) {
+        this.submit();
+    }
+});
+
+document.getElementById('username').addEventListener('input', function() {
+    this.classList.remove('error');
+    document.getElementById('usernameError').classList.remove('show');
+});
+
+document.getElementById('password').addEventListener('input', function() {
+    this.classList.remove('error');
+    document.getElementById('passwordError').classList.remove('show');
+});
+
+</script>
+
+</body>
+</html>
