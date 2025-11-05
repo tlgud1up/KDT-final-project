@@ -42,3 +42,29 @@ out/
 .vscode/
 
 build.gradle
+
+### Python ###
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+# 가상환경 (venv, .venv, venv311 등)
+venv/
+.venv/
+venv*/
+.venv*/
+fastapi/venv*/
+fastapi/.venv*/
+fastapi/venv311/
+
+# IDE 폴더 (PyCharm 등)
+fastapi/.idea/
+
+# 기타 불필요한 임시/결과 폴더
+*.log
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
