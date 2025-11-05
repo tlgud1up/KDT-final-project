@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9f475799-59d3-45ff-a6af-a21b4094e0d3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@kurkle/color/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@kurkle/color/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@kurkle/color/dist/color.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@kurkle/color/dist/color.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@kurkle/color/dist/color.esm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@kurkle/color/dist/color.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@kurkle/color/dist/color.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@kurkle/color/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/auto/auto.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/auto/auto.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/auto/auto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/auto/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chart.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chart.cjs.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chart.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chart.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chart.umd.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chart.umd.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chart.umd.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chart.umd.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chunks/helpers.dataset.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chunks/helpers.dataset.cjs.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chunks/helpers.dataset.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/chunks/helpers.dataset.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/controllers/controller.bar.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/controllers/controller.bubble.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/controllers/controller.doughnut.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/controllers/controller.line.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/controllers/controller.pie.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/controllers/controller.polarArea.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/controllers/controller.radar.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/controllers/controller.scatter.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/controllers/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.adapters.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.animation.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.animations.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.animations.defaults.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.animator.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.config.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.controller.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.datasetController.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.defaults.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.element.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.interaction.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.layouts.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.layouts.defaults.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.plugins.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.registry.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.scale.autoskip.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.scale.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.scale.defaults.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.ticks.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/core.typedRegistry.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/core/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/elements/element.arc.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/elements/element.bar.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/elements/element.line.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/elements/element.point.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/elements/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers.cjs.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.canvas.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.collection.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.color.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.config.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.config.types.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.core.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.curve.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.dataset.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.dom.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.easing.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.extras.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.interpolation.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.intl.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.math.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.options.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.rtl.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/helpers.segment.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/helpers/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/index.umd.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/platform/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/platform/platform.base.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/platform/platform.basic.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/platform/platform.dom.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.colors.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.decimation.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.filler/filler.drawing.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.filler/filler.helper.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.filler/filler.options.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.filler/filler.segment.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.filler/filler.target.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.filler/filler.target.stack.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.filler/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.filler/simpleArc.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.legend.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.subtitle.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.title.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/plugins/plugin.tooltip.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/scales/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/scales/scale.category.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/scales/scale.linear.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/scales/scale.linearbase.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/scales/scale.logarithmic.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/scales/scale.radialLinear.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/scales/scale.time.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/scales/scale.timeseries.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/types.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/types/animation.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/types/basic.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/types/color.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/types/geometric.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/types/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/types/layout.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/dist/types/utils.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/helpers/helpers.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/helpers/helpers.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/helpers/helpers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/helpers/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chart.js/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/DummyMemberLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/ResourceApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/advice/GlobalControllerAdvice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/advice/GlobalModelAdvice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/advice/MemberActionExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/controller/AboutpageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/controller/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/controller/HomepageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/controller/ImageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/controller/MypageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/controller/ResultController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/controller/StatsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/controller/TestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/dto/AccountActionResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/dto/AnalysisResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/dto/ImageValidDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/dto/MemberDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/dto/MorphingEffect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/dto/MorphingRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/dto/RaUsageDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/dto/ResultDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/dto/SignupRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/entity/AnalysisResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/entity/Member.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/entity/OrigImage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/entity/RaUsage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/exception/AnalysisFailedException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/exception/SignupException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/repository/AnalysisResultRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/repository/MemberRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/repository/OrigImageRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/repository/RaUsageRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/restcontroller/ImageRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/restcontroller/MemberController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/restcontroller/MorphingController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/restcontroller/RaUsageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/restcontroller/ResultRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/security/LoginFailureHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/security/MemberDetailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/security/MemberDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/security/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/service/AnalysisResultService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/service/ImageAnalysisService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/service/MapperService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/service/MemberService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/service/MorphingService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/service/MyPageService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/service/RaUsageService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/resource/service/WebClientConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-example.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/about.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/analyze.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/common.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/common2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/mypage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/newAnalyze.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/result.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/result2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/data/skorea-provinces-2018-topo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/aggregate1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/aggregate2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/aggregate3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/aggregate4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/bad_sample.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/construction1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/construction2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/construction3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/construction4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/good_sample.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/good_sample2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/notice_icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/scrolltop-Button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/solution card1.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/solution card2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/solution card3.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/solution.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/solution1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/solution2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/solution3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/solution4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/toolbar-about.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/toolbar-analyze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/toolbar-home.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/toolbar-mypage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/usage1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/usage2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/usage3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/usage_bg1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/usage_bg2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/임시 배경화면.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/modalDetail.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/about.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/analyze.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/analyze2.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/layout/footer.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/layout/header.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/layout/nav.anchor.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/member/login.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/member/signup.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/modalDetail.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/morphing.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/mypage.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/newAnalyze2.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/result.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/result2.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/stats.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/test_graph.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/test_morphing.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/test_upload.mustache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/resource/ResourceApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="34n4dXyllXrAyipf8gJdpIL2wvc" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.resource [:com.example.resource.ResourceApplication.main()].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/USER/Documents/GitHub/resource_project/resource",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9f475799-59d3-45ff-a6af-a21b4094e0d3" name="Changes" comment="" />
+      <created>1761836089866</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761836089866</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+      <path value="$PROJECT_DIR$/spring" />
+    </ignored-roots>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
